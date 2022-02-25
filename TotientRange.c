@@ -9,12 +9,10 @@
 // upper limit using C longs. It is based on earlier work by:
 // Phil Trinder, Nathan Charles, Hans-Wolfgang Loidl and Colin Runciman
 
+//BY Thomas Lancelin and Félix Rousseau
 #include <stdio.h>
 #include <time.h>
 #include <omp.h>
-
-// hcf x 0 = x
-// hcf x y = hcf y (rem x y)
 
 long hcf(long x, long y)
 {
@@ -28,16 +26,10 @@ long hcf(long x, long y)
   return x;
 }
 
-
-// relprime x y = hcf x y == 1
-
 int relprime(long x, long y)
 {
   return hcf(x, y) == 1;
 }
-
-
-// euler n = length (filter (relprime n) [1 .. n-1])
 
 long euler(long n)
 {
@@ -55,9 +47,6 @@ long euler(long n)
   return length;
 }
 
-
-// sumTotient lower upper = sum (map euler [lower, lower+1 .. upper])
-
 long sumTotient(long lower, long upper)
 {
   long sum, i;
@@ -67,7 +56,6 @@ long sumTotient(long lower, long upper)
     sum = sum + euler(i);
   return sum;
 }
-
 
 void runBenchmark()
 {
